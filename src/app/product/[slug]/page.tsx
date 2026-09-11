@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Check, ChevronRight } from "lucide-react";
-import { getProduct, products, formatPrice } from "@/lib/products";
+import { getProduct, products } from "@/lib/products";
 import { BottleArt } from "@/components/bottle-art";
 import { AddToCartPanel } from "@/components/add-to-cart-panel";
 import { ProductCard } from "@/components/product-card";
@@ -65,15 +65,6 @@ export default async function ProductPage({
           <div>
             <h1 className="text-3xl font-bold tracking-tight">{product.name}</h1>
             <p className="mt-2 text-muted-foreground">{product.tagline}</p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-2xl font-bold">{formatPrice(product.price)}</span>
-            {product.compareAtPrice && (
-              <span className="text-lg text-muted-foreground line-through">
-                {formatPrice(product.compareAtPrice)}
-              </span>
-            )}
           </div>
 
           <AddToCartPanel product={product} />

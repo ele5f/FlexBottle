@@ -4,12 +4,14 @@ import Link from "next/link";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { useCart } from "@/components/cart-context";
-import { getProduct, formatPrice } from "@/lib/products";
+import { useFormatPrice } from "@/components/currency-context";
+import { getProduct } from "@/lib/products";
 import { BottleArt } from "@/components/bottle-art";
 import { Separator } from "@/components/ui/separator";
 
 export default function CartPage() {
   const { lines, removeItem, setQty, subtotal } = useCart();
+  const format = useFormatPrice();
 
   if (lines.length === 0) {
     return (
@@ -51,7 +53,7 @@ export default function CartPage() {
                         <div className="text-sm text-muted-foreground">{line.color}</div>
                       )}
                       <div className="text-sm text-muted-foreground">
-                        {formatPrice(product.price)} each
+                        {format(product.price)} each
                       </div>
                     </div>
                     <button
@@ -80,7 +82,7 @@ export default function CartPage() {
                         <Plus className="size-3.5" />
                       </button>
                     </div>
-                    <span className="font-semibold">{formatPrice(product.price * line.qty)}</span>
+                    <span className="font-semibold">{format(product.price * line.qty)}</span>
                   </div>
                 </div>
               </li>
@@ -93,17 +95,17 @@ export default function CartPage() {
           <div className="mt-4 flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span className="font-medium">{formatPrice(subtotal)}</span>
+              <span className="font-medium">{format(subtotal)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Shipping</span>
-              <span className="font-medium">{subtotal >= 60 ? "Free" : formatPrice(6.99)}</span>
+              <span className="font-medium">{subtotal >= 60 ? "Free" : format(6.99)}</span>
             </div>
           </div>
           <Separator className="my-4" />
           <div className="flex justify-between font-semibold">
             <span>Total</span>
-            <span>{formatPrice(subtotal >= 60 ? subtotal : subtotal + 6.99)}</span>
+            <span>{format(subtotal >= 60 ? subtotal : subtotal + 6.99)}</span>
           </div>
           <Link href="/checkout" className={buttonVariants({ size: "lg", className: "mt-6 w-full" })}>
             Checkout

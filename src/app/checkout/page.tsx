@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/components/cart-context";
-import { getProduct, formatPrice } from "@/lib/products";
+import { useFormatPrice } from "@/components/currency-context";
+import { getProduct } from "@/lib/products";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import { ShoppingBag } from "lucide-react";
 
 export default function CheckoutPage() {
   const { lines, subtotal, clear } = useCart();
+  const format = useFormatPrice();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
 
@@ -109,7 +111,7 @@ export default function CheckoutPage() {
                     {product.name}
                     {line.color ? ` — ${line.color}` : ""} × {line.qty}
                   </span>
-                  <span className="font-medium">{formatPrice(product.price * line.qty)}</span>
+                  <span className="font-medium">{format(product.price * line.qty)}</span>
                 </li>
               );
             })}
@@ -118,17 +120,17 @@ export default function CheckoutPage() {
           <div className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span className="font-medium">{formatPrice(subtotal)}</span>
+              <span className="font-medium">{format(subtotal)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Shipping</span>
-              <span className="font-medium">{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
+              <span className="font-medium">{shippingCost === 0 ? "Free" : format(shippingCost)}</span>
             </div>
           </div>
           <Separator className="my-4" />
           <div className="flex justify-between font-semibold">
             <span>Total</span>
-            <span>{formatPrice(total)}</span>
+            <span>{format(total)}</span>
           </div>
           <Button type="submit" size="lg" className="mt-6 w-full" disabled={submitting}>
             {submitting ? "Placing order…" : "Place order"}

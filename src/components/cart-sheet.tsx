@@ -11,12 +11,14 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { useCart } from "@/components/cart-context";
-import { getProduct, formatPrice } from "@/lib/products";
+import { useFormatPrice } from "@/components/currency-context";
+import { getProduct } from "@/lib/products";
 import { BottleArt } from "@/components/bottle-art";
 import { Separator } from "@/components/ui/separator";
 
 export function CartSheet() {
   const { lines, isOpen, setOpen, removeItem, setQty, subtotal, count } = useCart();
+  const format = useFormatPrice();
 
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
@@ -88,7 +90,7 @@ export function CartSheet() {
                             </button>
                           </div>
                           <span className="text-sm font-semibold">
-                            {formatPrice(product.price * line.qty)}
+                            {format(product.price * line.qty)}
                           </span>
                         </div>
                       </div>
@@ -102,7 +104,7 @@ export function CartSheet() {
               <div className="flex w-full flex-col gap-3">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-semibold">{formatPrice(subtotal)}</span>
+                  <span className="font-semibold">{format(subtotal)}</span>
                 </div>
                 <Separator />
                 <Link

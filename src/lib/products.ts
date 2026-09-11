@@ -192,9 +192,3 @@ export function getProduct(slug: string) {
   return products.find((p) => p.slug === slug);
 }
 
-export function formatPrice(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(value);
-}

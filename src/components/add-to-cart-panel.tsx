@@ -5,16 +5,27 @@ import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart-context";
+import { useFormatPrice } from "@/components/currency-context";
 import type { Product } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 export function AddToCartPanel({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const format = useFormatPrice();
   const [color, setColor] = useState(product.colors?.[0]?.name);
   const [qty, setQty] = useState(1);
 
   return (
     <div className="flex flex-col gap-5">
+      <div className="flex items-center gap-3">
+        <span className="text-2xl font-bold">{format(product.price)}</span>
+        {product.compareAtPrice && (
+          <span className="text-lg text-muted-foreground line-through">
+            {format(product.compareAtPrice)}
+          </span>
+        )}
+      </div>
+
       {product.colors && (
         <div>
           <div className="mb-2 text-sm font-medium">

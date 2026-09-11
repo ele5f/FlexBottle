@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CartProvider } from "@/components/cart-context";
 import { CartSheet } from "@/components/cart-sheet";
+import { CurrencyProvider } from "@/components/currency-context";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -17,6 +18,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
+
 export const metadata: Metadata = {
   title: "FlexBottle — The bottle that folds, locks, and does more",
   description:
@@ -27,16 +34,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <CartSheet />
-          <Toaster position="bottom-right" />
-        </CartProvider>
+        <CurrencyProvider>
+          <CartProvider>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <CartSheet />
+            <Toaster position="bottom-right" />
+          </CartProvider>
+        </CurrencyProvider>
       </body>
     </html>
   );
