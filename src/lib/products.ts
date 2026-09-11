@@ -19,6 +19,7 @@ export type Product = {
   includes?: string[];
   illustration: "core" | "power" | "lumen" | "blend" | "bundle-power" | "bundle-pro";
   badge?: string;
+  images?: string[];
 };
 
 export const colors: BottleColor[] = [
@@ -58,6 +59,7 @@ export const products: Product[] = [
     includes: ["FlexBottle Core", "Classic Base cap", "Quick-start card"],
     illustration: "core",
     badge: "Best seller",
+    images: ["/products/flexbottle-core.jpg", "/products/flexbottle-core-folded.jpg"],
   },
   {
     slug: "power-base",
@@ -85,6 +87,7 @@ export const products: Product[] = [
     includes: ["Power Base attachment", "USB-C cable"],
     illustration: "power",
     badge: "New",
+    images: ["/products/power-base.jpg"],
   },
   {
     slug: "lumen-base",
@@ -109,6 +112,7 @@ export const products: Product[] = [
     ],
     includes: ["Lumen Base attachment", "USB-C cable"],
     illustration: "lumen",
+    images: ["/products/lumen-base.jpg"],
   },
   {
     slug: "blend-base",
@@ -134,6 +138,7 @@ export const products: Product[] = [
     ],
     includes: ["Blend Base attachment", "USB-C cable", "Cleaning brush"],
     illustration: "blend",
+    images: ["/products/blend-base.jpg"],
   },
   {
     slug: "starter-bundle",

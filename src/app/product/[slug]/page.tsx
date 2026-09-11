@@ -3,10 +3,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Check, ChevronRight } from "lucide-react";
 import { getProduct, products } from "@/lib/products";
-import { BottleArt } from "@/components/bottle-art";
+import { ProductGallery } from "@/components/product-gallery";
 import { AddToCartPanel } from "@/components/add-to-cart-panel";
 import { ProductCard } from "@/components/product-card";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -54,12 +53,7 @@ export default async function ProductPage({
       </nav>
 
       <div className="mt-6 grid gap-10 md:grid-cols-2">
-        <div className="relative flex aspect-square items-center justify-center rounded-3xl bg-secondary/60 p-10">
-          {product.badge && (
-            <Badge className="absolute left-4 top-4">{product.badge}</Badge>
-          )}
-          <BottleArt variant={product.illustration} className="h-full max-h-96 w-auto" />
-        </div>
+        <ProductGallery product={product} />
 
         <div className="flex flex-col gap-5">
           <div>

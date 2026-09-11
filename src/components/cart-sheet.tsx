@@ -13,7 +13,7 @@ import {
 import { useCart } from "@/components/cart-context";
 import { useFormatPrice } from "@/components/currency-context";
 import { getProduct } from "@/lib/products";
-import { BottleArt } from "@/components/bottle-art";
+import { ProductThumb } from "@/components/product-thumb";
 import { Separator } from "@/components/ui/separator";
 
 export function CartSheet() {
@@ -46,9 +46,7 @@ export function CartSheet() {
                   if (!product) return null;
                   return (
                     <li key={`${line.slug}-${line.color ?? "default"}`} className="flex gap-3">
-                      <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-secondary">
-                        <BottleArt variant={product.illustration} className="h-14 w-14" />
-                      </div>
+                      <ProductThumb product={product} className="size-16" />
                       <div className="flex flex-1 flex-col gap-1">
                         <div className="flex items-start justify-between gap-2">
                           <div>

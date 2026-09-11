@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { useCart } from "@/components/cart-context";
 import { useFormatPrice } from "@/components/currency-context";
 import { getProduct } from "@/lib/products";
-import { BottleArt } from "@/components/bottle-art";
+import { ProductThumb } from "@/components/product-thumb";
 import { Separator } from "@/components/ui/separator";
 
 export default function CartPage() {
@@ -37,11 +37,8 @@ export default function CartPage() {
             if (!product) return null;
             return (
               <li key={`${line.slug}-${line.color ?? "default"}`} className="flex gap-4 py-6">
-                <Link
-                  href={`/product/${product.slug}`}
-                  className="flex size-24 shrink-0 items-center justify-center rounded-xl bg-secondary"
-                >
-                  <BottleArt variant={product.illustration} className="h-20 w-20" />
+                <Link href={`/product/${product.slug}`} className="shrink-0">
+                  <ProductThumb product={product} className="size-24 rounded-xl" iconClassName="h-20 w-20" />
                 </Link>
                 <div className="flex flex-1 flex-col justify-between gap-2">
                   <div className="flex items-start justify-between gap-4">
