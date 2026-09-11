@@ -1,29 +1,17 @@
 import type { NextConfig } from "next";
 
-// GitHub Pages serves this repo from /<repo-name>/, so the built app needs
-// that as its basePath/assetPrefix when running in the GitHub Actions build.
-const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-let basePath = "";
-let assetPrefix = "";
-if (isGithubActions && process.env.GITHUB_REPOSITORY) {
-  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, "");
-  basePath = `/${repo}`;
-  assetPrefix = `/${repo}/`;
-}
+// GitHub Pages serves this repo from /<repo-name>/. NEXT_PUBLIC_BASE_PATH is
+// set as a real env var in .github/workflows/nextjs.yml's build step (not
+// via this file's `env` key) so Next reliably inlines it into the client
+// bundle — see src/lib/asset-path.ts for why that matters.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   output: "export",
   basePath,
-  assetPrefix,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
   images: {
     unoptimized: true,
-  },
-  // next/image with unoptimized:true renders a plain <img src>, which does
-  // NOT get basePath prefixed automatically (that only happens for the
-  // default /_next/image loader). Expose basePath so components can prefix
-  // static asset paths themselves — see src/lib/asset-path.ts.
-  env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 
