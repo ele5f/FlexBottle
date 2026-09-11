@@ -8,6 +8,7 @@ import { NewsletterForm } from "@/components/newsletter-form";
 import { TiltCard } from "@/components/tilt-card";
 import { getProduct, products } from "@/lib/products";
 import { cn } from "@/lib/utils";
+import { assetPath } from "@/lib/asset-path";
 
 const featuredSlugs = ["flexbottle-core", "power-base", "lumen-base", "blend-base"];
 
@@ -56,7 +57,7 @@ export default function Home() {
               <div className="absolute inset-0 -rotate-6 rounded-[3rem] bg-primary/10" />
               <div className="relative h-[380px] w-[260px] overflow-hidden rounded-[2.5rem] shadow-2xl">
                 <Image
-                  src="/products/flexbottle-core.jpg"
+                  src={assetPath("/products/flexbottle-core.jpg")}
                   alt="FlexBottle Core"
                   fill
                   sizes="260px"
@@ -66,7 +67,7 @@ export default function Home() {
               </div>
               <div className="absolute -right-6 bottom-4 h-36 w-36 -rotate-6 overflow-hidden rounded-3xl border-4 border-background shadow-xl">
                 <Image
-                  src="/products/flexbottle-core-folded.jpg"
+                  src={assetPath("/products/flexbottle-core-folded.jpg")}
                   alt="FlexBottle Core, folded"
                   fill
                   sizes="144px"
@@ -96,7 +97,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="relative overflow-hidden rounded-3xl">
           <Image
-            src="/products/collection.jpg"
+            src={assetPath("/products/collection.jpg")}
             alt="FlexBottle Core with the Power, Lumen, and Blend bases"
             width={1376}
             height={768}

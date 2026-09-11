@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BottleArt } from "@/components/bottle-art";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { assetPath } from "@/lib/asset-path";
 import type { Product } from "@/lib/products";
 
 export function ProductGallery({ product }: { product: Product }) {
@@ -20,7 +21,7 @@ export function ProductGallery({ product }: { product: Product }) {
         {images.length > 0 ? (
           <Image
             key={images[active]}
-            src={images[active]}
+            src={assetPath(images[active])}
             alt={product.name}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
@@ -45,7 +46,7 @@ export function ProductGallery({ product }: { product: Product }) {
               )}
               aria-label={`Show image ${i + 1}`}
             >
-              <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+              <Image src={assetPath(src)} alt="" fill sizes="80px" className="object-cover" />
             </button>
           ))}
         </div>

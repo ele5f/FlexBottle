@@ -6,6 +6,7 @@ import { Product } from "@/lib/products";
 import { BottleArt } from "@/components/bottle-art";
 import { Badge } from "@/components/ui/badge";
 import { useFormatPrice } from "@/components/currency-context";
+import { assetPath } from "@/lib/asset-path";
 
 export function ProductCard({ product }: { product: Product }) {
   const format = useFormatPrice();
@@ -23,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
         )}
         {product.images?.[0] ? (
           <Image
-            src={product.images[0]}
+            src={assetPath(product.images[0])}
             alt={product.name}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"

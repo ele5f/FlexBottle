@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Lock, PackageOpen, Recycle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
   title: "About — FlexBottle",
@@ -55,7 +56,7 @@ export default function AboutPage() {
         </div>
         <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl">
           <Image
-            src="/products/pro-bundle.jpg"
+            src={assetPath("/products/pro-bundle.jpg")}
             alt="FlexBottle Core with the Power, Lumen, and Blend bases"
             fill
             sizes="(min-width: 768px) 400px, 100vw"
