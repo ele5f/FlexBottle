@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BatteryCharging, Lock, Lightbulb, Blend, Droplets, PackageOpen } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { BottleArt } from "@/components/bottle-art";
@@ -53,13 +54,25 @@ export default function Home() {
           <TiltCard className="relative mx-auto flex items-center justify-center" strength={8}>
             <div className="relative flex h-[420px] w-[320px] items-end justify-center">
               <div className="absolute inset-0 -rotate-6 rounded-[3rem] bg-primary/10" />
-              <div className="absolute inset-x-6 top-6 bottom-16 rotate-3 rounded-[2.5rem] bg-accent/15" />
-              <BottleArt variant="core" className="relative h-[380px] w-auto drop-shadow-xl" />
-              <BottleArt
-                variant="power"
-                folded
-                className="absolute -right-6 bottom-4 h-44 w-auto -rotate-6 drop-shadow-lg"
-              />
+              <div className="relative h-[380px] w-[260px] overflow-hidden rounded-[2.5rem] shadow-2xl">
+                <Image
+                  src="/products/flexbottle-core.jpg"
+                  alt="FlexBottle Core"
+                  fill
+                  sizes="260px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="absolute -right-6 bottom-4 h-36 w-36 -rotate-6 overflow-hidden rounded-3xl border-4 border-background shadow-xl">
+                <Image
+                  src="/products/flexbottle-core-folded.jpg"
+                  alt="FlexBottle Core, folded"
+                  fill
+                  sizes="144px"
+                  className="object-cover"
+                />
+              </div>
               <span className="absolute -left-4 top-10 -rotate-6 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-medium shadow-md">
                 Twist to lock 🔒
               </span>
@@ -75,6 +88,26 @@ export default function Home() {
                 <span className="text-sm text-primary-foreground/70">{stat.label}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Collection banner */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="relative overflow-hidden rounded-3xl">
+          <Image
+            src="/products/collection.jpg"
+            alt="FlexBottle Core with the Power, Lumen, and Blend bases"
+            width={1376}
+            height={768}
+            sizes="(min-width: 1024px) 1152px, 100vw"
+            className="h-auto w-full"
+          />
+          <div className="absolute inset-y-0 right-0 hidden w-[38%] flex-col justify-center px-8 md:flex">
+            <h2 className="font-serif text-3xl font-medium text-primary">FlexBottle</h2>
+            <p className="mt-3 text-sm text-primary/80">
+              One Core bottle, three interchangeable bases — power, light, and blend.
+            </p>
           </div>
         </div>
       </section>

@@ -141,28 +141,6 @@ export const products: Product[] = [
     images: ["/products/blend-base.jpg"],
   },
   {
-    slug: "starter-bundle",
-    name: "Starter Bundle",
-    tagline: "FlexBottle Core + Power Base, ready out of the box.",
-    category: "bundle",
-    price: 79.99,
-    compareAtPrice: 84.98,
-    description:
-      "Everything you need to start: the FlexBottle Core plus the Power Base, so your bottle folds flat, locks with a twist, and charges your phone while keeping your drink hot or cold — from day one.",
-    features: [
-      "Includes FlexBottle Core + Power Base",
-      "Save vs. buying separately",
-      "Mix and match colors at checkout",
-    ],
-    specs: [
-      { label: "Includes", value: "FlexBottle Core, Power Base, USB-C cable" },
-      { label: "Combined weight", value: "310 g" },
-    ],
-    colors,
-    includes: ["FlexBottle Core", "Power Base attachment", "USB-C cable"],
-    illustration: "bundle-power",
-  },
-  {
     slug: "pro-bundle",
     name: "Pro Bundle",
     tagline: "The Core plus all three bases — power, light and blend.",
