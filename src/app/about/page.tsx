@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Lock, PackageOpen, Recycle } from "lucide-react";
-import { BottleArt } from "@/components/bottle-art";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -53,8 +53,14 @@ export default function AboutPage() {
             Shop FlexBottle
           </Link>
         </div>
-        <div className="flex items-center justify-center">
-          <BottleArt variant="bundle-pro" className="h-80 w-auto" />
+        <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl">
+          <Image
+            src="/products/pro-bundle.jpg"
+            alt="FlexBottle Core with the Power, Lumen, and Blend bases"
+            fill
+            sizes="(min-width: 768px) 400px, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
 

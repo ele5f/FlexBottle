@@ -167,6 +167,7 @@ export const products: Product[] = [
       "Travel case",
     ],
     illustration: "bundle-pro",
+    images: ["/products/pro-bundle.jpg"],
     badge: "Best value",
   },
 ];
